@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prompt Builder — AI for Hobbyists</title>
+<meta name="description" content="A free, private tool to build AI prompts for hobbies. Runs entirely in your browser. Credit: Asdale Dynamics, LLC.">
+<style>
+  :root{--bg:#ffffff;--text:#1f2937;--muted:#4b5563;--line:#e5e7eb;--accent:#2563eb;--accent-hover:#1d4ed8;--chip:#eff6ff;--chip-text:#1e40af;--radius:8px;--max-width:720px}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--text);background:var(--bg);line-height:1.6}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+  header{background:var(--accent);color:#fff;padding:1rem 1.5rem}
+  .header-inner{max-width:var(--max-width);margin:0 auto}
+  .site-title{margin:0;font-size:1.5rem;font-weight:800}
+  .site-tagline{margin:0;font-size:0.95rem;color:#c7d2fe}
+  nav{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
+  .nav-inner{max-width:var(--max-width);margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+  .nav-menu{display:flex;gap:0.5rem;list-style:none;margin:0;padding:0;flex:1;min-width:0}
+  .nav-menu a{display:block;padding:0.55rem 0.9rem;border-radius:var(--radius);color:var(--text);font-weight:500;font-size:0.95rem;white-space:nowrap}
+  .nav-menu a:hover,.nav-menu a.active{background:var(--chip);color:var(--chip-text);text-decoration:none}
+  .menu-toggle{display:none;padding:0.55rem;border:1px solid var(--line);background:#fff;border-radius:var(--radius);cursor:pointer}
+  main{max-width:var(--max-width);margin:0 auto;padding:2rem 1.5rem 4rem}
+  h1{font-size:2rem;margin:0 0 0.5rem;line-height:1.25}
+  h2{font-size:1.35rem;margin:2rem 0 0.75rem;border-bottom:1px solid var(--line);padding-bottom:0.4rem}
+  p{margin:0 0 1rem}
+  .intro{background:#f8fafc;border-left:4px solid var(--accent);padding:1rem 1.25rem;margin:1rem 0 1.5rem;border-radius:0 var(--radius) var(--radius) 0;font-size:0.98rem}
+  .card{border:1px solid var(--line);border-radius:var(--radius);padding:1.25rem;margin:1rem 0;background:#fff}
+  label{display:block;margin:0 0 0.4rem;font-weight:600;font-size:0.95rem}
+  select,input,textarea{width:100%;padding:0.6rem 0.8rem;border:1px solid var(--line);border-radius:var(--radius);font-size:1rem;background:#fff}
+  textarea{min-height:140px;resize:vertical}
+  button{background:var(--accent);color:#fff;border:none;padding:0.7rem 1.25rem;border-radius:var(--radius);font-size:1rem;font-weight:600;cursor:pointer}
+  button:hover{background:var(--accent-hover)}
+  button:disabled{opacity:0.6;cursor:not-allowed}
+  .result{border:1px solid var(--line);border-radius:var(--radius);padding:1rem;background:#f8fafc;white-space:pre-wrap;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:0.95rem;margin-top:1rem;display:none}
+  .copy{background:#f3f4f6;color:var(--text);border:1px solid var(--line);margin-top:0.5rem;padding:0.5rem 0.85rem;border-radius:var(--radius);font-size:0.9rem;cursor:pointer;display:inline-block}
+  .copy:hover{background:#e5e7eb}
+  .privacy{background:var(--chip);border-left:4px solid var(--accent);padding:0.9rem 1.25rem;margin:1rem 0;border-radius:0 var(--radius) var(--radius) 0;font-size:0.95rem}
+  .privacy strong{color:var(--chip-text)}
+  footer{border-top:1px solid var(--line);padding:2rem 1.5rem 3rem;font-size:0.85rem;color:var(--muted);max-width:var(--max-width);margin:0 auto}
+  footer p{margin:0.35rem 0}
+  footer strong{color:var(--text)}
+  @media (max-width:640px){.nav-menu{display:none;width:100%;flex-direction:column;margin-top:0.75rem}.nav-menu.open{display:flex}.menu-toggle{display:block}main{padding:1.25rem 1rem 3rem}h1{font-size:1.6rem}}
+  @media print{header,nav,footer,.no-print{display:none!important}main{padding:0}body{background:#fff;color:#000}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <h1 class="site-title">Prompt Builder</h1>
+    <p class="site-tagline">Build better AI prompts for your hobbies — free, private, runs in your browser.</p>
+  </div>
+</header>
+
+<nav>
+  <div class="nav-inner">
+    <button class="menu-toggle" aria-label="Menu" aria-expanded="false">&#9776;</button>
+    <ul class="nav-menu" id="nav-menu">
+      <li><a href="../../index.html">Manual home</a></li>
+      <li><a href="../../privacy.html">Privacy &amp; safety</a></li>
+      <li><a href="#builder" class="active">Builder</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="builder">
+  <h1>Prompt Builder</h1>
+  <div class="intro">
+    <p>Fill in the blanks below to create a clear, polite AI prompt for your hobby project. Nothing you type leaves this page — it stays in your browser.</p>
+  </div>
+  <p class="privacy"><strong>Privacy:</strong> Never paste your real name, address, phone, email, passwords, bank details, health information, or anyone else's personal details. Use placeholders like <code>[YOUR CITY]</code> instead.</p>
+
+  <div class="card">
+    <label for="role">1. Who should the AI be? (role)</label>
+    <select id="role">
+      <option value="">Choose a role&hellip;</option>
+      <option value="Act like a patient craft teacher.">Patient craft teacher</option>
+      <option value="Act like an organized collector.">Organized collector</option>
+      <option value="Act like a friendly game guide.">Friendly game guide</option>
+      <option value="Act like a careful DIY helper.">Careful DIY helper</option>
+      <option value="Act like a supportive writing coach.">Supportive writing coach</option>
+    </select>
+
+    <label for="task">2. What exactly do you want? (task)</label>
+    <textarea id="task" placeholder="Example: List five easy scrapbook page ideas for a wedding album."></textarea>
+
+    <label for="context">3. What should the AI know? (context — optional)</label>
+    <textarea id="context" placeholder="Example: I am a beginner. I like nature themes. I have never used a cutting machine."></textarea>
+
+    <label for="format">4. How should the answer look? (format — optional)</label>
+    <select id="format">
+      <option value="">Choose a format&hellip;</option>
+      <option value="Use a bulleted list. Keep each step under two sentences.">Bulleted list, short steps</option>
+      <option value="Use a numbered list.">Numbered list</option>
+      <option value="Format it so I can print it on one page.">Printable one page</option>
+    </select>
+
+    <button id="build">Build my prompt</button>
+    <button id="copy" class="copy no-print" style="display:none">Copy prompt</button>
+  </div>
+
+  <div class="result" id="result"></div>
+
+  <h2 class="no-print">Tips</h2>
+  <ul class="no-print">
+    <li>Start small — one task per prompt works best.</li>
+    <li>Use placeholders like <code>[YOUR CITY]</code> instead of real details.</li>
+    <li>Copy the result into your AI chat. Save useful answers in a notes app or print them.</li>
+    <li>See <a href="../../../docs/project-planner.md">Project planner</a> for a printable planner page.</li>
+  </ul>
+</main>
+
+<footer>
+  <p><strong>Credit:</strong> Asdale Dynamics, LLC (Indiana, formed October 2026). Beginner-friendly AI education, plain English, step by step.</p>
+  <p><small>MIT License. Copyright (c) 2026 Asdale Dynamics, LLC. See <a href="../../LICENSE">LICENSE</a>.</small></p>
+</footer>
+
+<script>
+(function(){
+  var role = document.getElementById('role');
+  var task = document.getElementById('task');
+  var context = document.getElementById('context');
+  var format = document.getElementById('format');
+  var build = document.getElementById('build');
+  var copy = document.getElementById('copy');
+  var result = document.getElementById('result');
+
+  build.addEventListener('click', function(){
+    var parts = [];
+    if(role.value) parts.push(role.value);
+    if(task.value.trim()) parts.push(task.value.trim());
+    if(context.value.trim()) parts.push(context.value.trim());
+    if(format.value) parts.push(format.value);
+    if(!task.value.trim()){
+      result.textContent = 'Please fill in at least the task (step 2).';
+      result.style.display = 'block';
+      copy.style.display = 'none';
+      return;
+    }
+    var prompt = parts.join(' ') + ' Remember: never paste personal info into an AI tool. Use placeholders like [YOUR CITY] instead of real details.';
+    result.textContent = prompt;
+    result.style.display = 'block';
+    copy.style.display = 'inline-block';
+  });
+
+  copy.addEventListener('click', function(){
+    navigator.clipboard.writeText(result.textContent).then(function(){
+      copy.textContent = 'Copied!';
+      setTimeout(function(){ copy.textContent = 'Copy prompt'; }, 1500);
+    });
+  });
+
+  var toggle = document.querySelector('.menu-toggle');
+  var menu = document.getElementById('nav-menu');
+  if(toggle && menu){
+    toggle.addEventListener('click', function(){
+      var open = menu.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    menu.querySelectorAll('a').forEach(function(link){
+      link.addEventListener('click', function(){
+        menu.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>
