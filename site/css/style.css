@@ -1,0 +1,213 @@
+/* AI for Hobbyists — static site styles */
+/* Credit: Asdale Dynamics, LLC (Indiana, formed October 2026) */
+
+:root {
+  --bg: #ffffff;
+  --text: #1f2937;
+  --muted: #4b5563;
+  --line: #e5e7eb;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --chip: #eff6ff;
+  --chip-text: #1e40af;
+  --shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --radius: 8px;
+  --max-width: 720px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.6;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+header {
+  background: var(--accent);
+  color: #ffffff;
+  padding: 1rem 1.5rem;
+}
+
+.header-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.site-title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.site-tagline {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #c7d2fe;
+}
+
+nav {
+  background: #ffffff;
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.nav-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+  min-width: 0;
+}
+
+.nav-menu a {
+  display: block;
+  padding: 0.55rem 0.9rem;
+  border-radius: var(--radius);
+  color: var(--text);
+  font-weight: 500;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+.nav-menu a:hover, .nav-menu a.active {
+  background: var(--chip);
+  color: var(--chip-text);
+  text-decoration: none;
+}
+
+.menu-toggle {
+  display: none;
+  padding: 0.55rem;
+  border: 1px solid var(--line);
+  background: #ffffff;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+h1 { font-size: 2rem; margin: 0 0 0.5rem; line-height: 1.25; }
+h2 { font-size: 1.35rem; margin: 2rem 0 0.75rem; border-bottom: 1px solid var(--line); padding-bottom: 0.4rem; }
+h3 { font-size: 1.15rem; margin: 1.5rem 0 0.6rem; }
+p { margin: 0 0 1rem; }
+
+.intro {
+  background: #f8fafc;
+  border-left: 4px solid var(--accent);
+  padding: 1rem 1.25rem;
+  margin: 1rem 0 1.5rem;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-size: 0.98rem;
+}
+
+.intro strong { color: var(--text); }
+
+ul, ol { margin: 0.4rem 0 1rem 1.4rem; }
+li { margin-bottom: 0.45rem; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.95rem;
+}
+th, td {
+  border: 1px solid var(--line);
+  padding: 0.55rem 0.75rem;
+  text-align: left;
+}
+th { background: #f8fafc; font-weight: 600; }
+
+.callout {
+  background: var(--chip);
+  border-left: 4px solid var(--accent);
+  padding: 0.9rem 1.25rem;
+  margin: 1rem 0;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-size: 0.95rem;
+}
+
+.planner-box {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  margin: 1rem 0;
+  background: #ffffff;
+  page-break-inside: avoid;
+}
+
+.planner-box pre {
+  margin: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+footer {
+  border-top: 1px solid var(--line);
+  padding: 2rem 1.5rem 3rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+footer p { margin: 0.35rem 0; }
+footer strong { color: var(--text); }
+
+@media (max-width: 640px) {
+  .nav-menu { display: none; width: 100%; flex-direction: column; margin-top: 0.75rem; }
+  .nav-menu.open { display: flex; }
+  .menu-toggle { display: block; }
+  main { padding: 1.25rem 1rem 3rem; }
+  h1 { font-size: 1.6rem; }
+}
+
+/* Print tweaks */
+@media print {
+  body { background: #ffffff; color: #000000; }
+  header, nav, footer, .no-print { display: none !important; }
+  main { padding: 0; }
+  a[href]:after { content: none; }
+  h2 { border-bottom: 1px solid #000000; }
+  .planner-box { border: 1px solid #000000; page-break-inside: avoid; }
+}
